@@ -37,7 +37,7 @@ export default function NoteForm() {
   >;
 
   const handleChange = (e: FormChangeEvent) => {
-    setDraft({ [e.target.name]: e.target.value });
+    setDraft({ ...draft, [e.target.name]: e.target.value });
   };
 
   const formAction = (formData: FormData) => {

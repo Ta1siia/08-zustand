@@ -6,7 +6,7 @@ type Draft = CreateNoteParams;
 
 interface NoteStore {
   draft: Draft;
-  setDraft: (note: Partial<Draft>) => void;
+  setDraft: (note: Draft) => void;
   clearDraft: () => void;
 }
 
@@ -20,8 +20,7 @@ export const useNoteStore = create<NoteStore>()(
   persist(
     (set) => ({
       draft: initialDraft,
-      setDraft: (note) =>
-        set((state) => ({ draft: { ...state.draft, ...note } })),
+      setDraft: (note) => set({ draft: note }),
       clearDraft: () => set({ draft: initialDraft }),
     }),
     {
